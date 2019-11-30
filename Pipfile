@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-tensoeflow = "*"
-tensorflow = "*"
+tensorflow = "==1.14.0"
+opencc-python-reimplemented = "*"
 
 [requires]
 python_version = "3.7"

@@ -14,26 +14,30 @@ def str2bool(v):
 def get_entity(tag_seq, char_seq):
     PER = get_PER_entity(tag_seq, char_seq)
     LOC = get_LOC_entity(tag_seq, char_seq)
-    ORG = get_ORG_entity(tag_seq, char_seq)
-    return PER, LOC, ORG
+    EVE = get_EVE_entity(tag_seq, char_seq)
+    FAC = get_FAC_entity(tag_seq, char_seq)
+    return PER, LOC, EVE, FAC
 
 
 def get_PER_entity(tag_seq, char_seq):
     length = len(char_seq)
     PER = []
+    wordstart = False
     for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
         if tag == 'B-PER':
+            wordstart = True
             if 'per' in locals().keys():
                 PER.append(per)
                 del per
             per = char
             if i+1 == length:
                 PER.append(per)
-        if tag == 'I-PER':
+        if tag == 'I-PER' and wordstart:
             per += char
             if i+1 == length:
                 PER.append(per)
         if tag not in ['I-PER', 'B-PER']:
+            wordstart = False
             if 'per' in locals().keys():
                 PER.append(per)
                 del per
@@ -44,48 +48,82 @@ def get_PER_entity(tag_seq, char_seq):
 def get_LOC_entity(tag_seq, char_seq):
     length = len(char_seq)
     LOC = []
+    wordstart = False
     for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
         if tag == 'B-LOC':
+            wordstart = True
             if 'loc' in locals().keys():
                 LOC.append(loc)
                 del loc
             loc = char
             if i+1 == length:
                 LOC.append(loc)
-        if tag == 'I-LOC':
+
+        if tag == 'I-LOC' and wordstart:
             loc += char
             if i+1 == length:
                 LOC.append(loc)
+
         if tag not in ['I-LOC', 'B-LOC']:
+            wordstart = False
             if 'loc' in locals().keys():
                 LOC.append(loc)
                 del loc
             continue
+
     return LOC
 
 
-def get_ORG_entity(tag_seq, char_seq):
+def get_EVE_entity(tag_seq, char_seq):
     length = len(char_seq)
-    ORG = []
+    EVE = []
+    wordstart = False
     for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
-        if tag == 'B-ORG':
-            if 'org' in locals().keys():
-                ORG.append(org)
-                del org
-            org = char
+        if tag == 'B-EVE':
+            wordstart = True
+            if 'eve' in locals().keys():
+                EVE.append(eve)
+                del eve
+            eve = char
             if i+1 == length:
-                ORG.append(org)
-        if tag == 'I-ORG':
-            org += char
+                EVE.append(eve)
+        if tag == 'I-EVE' and wordstart:
+            eve += char
             if i+1 == length:
-                ORG.append(org)
-        if tag not in ['I-ORG', 'B-ORG']:
-            if 'org' in locals().keys():
-                ORG.append(org)
-                del org
+                EVE.append(eve)
+        if tag not in ['I-EVE', 'B-EVE']:
+            wordstart = False
+            if 'eve' in locals().keys():
+                EVE.append(eve)
+                del eve
             continue
-    return ORG
 
+    return EVE
+
+def get_FAC_entity(tag_seq, char_seq):
+    length = len(char_seq)
+    FAC = []
+    wordstart = False
+    for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
+        if tag == 'B-FAC':
+            wordstart = True
+            if 'fac' in locals().keys():
+                FAC.append(fac)
+                del fac
+            fac = char
+            if i+1 == length:
+                FAC.append(fac)
+        if tag == 'I-FAC' and wordstart:
+            fac += char
+            if i+1 == length:
+                FAC.append(fac)
+        if tag not in ['I-FAC', 'B-FAC']:
+            wordstart = False
+            if 'fac' in locals().keys():
+                FAC.append(fac)
+                del fac
+            continue
+    return FAC
 
 def get_logger(filename):
     logger = logging.getLogger('logger')

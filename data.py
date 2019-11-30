@@ -5,15 +5,16 @@ import numpy as np
 tag2label = {"O": 0,
              "B-PER": 1, "I-PER": 2,
              "B-LOC": 3, "I-LOC": 4,
-             "B-ORG": 5, "I-ORG": 6
+             "B-FAC": 5, "I-FAC": 6,
+             "B-EVE": 7, "I-EVE": 8,
              }
 
 
 def read_corpus(corpus_path):
     """
-    read corpus and return the list of samples
-    :param corpus_path:
-    :return: data
+        read corpus and return the list of samples
+        :param corpus_path:
+        :return: data
     """
     data = []
     with open(corpus_path, encoding='utf-8') as fr:
@@ -24,20 +25,18 @@ def read_corpus(corpus_path):
             [char, label] = line.strip().split()
             sent_.append(char)
             tag_.append(label)
-        else:
-            data.append((sent_, tag_))
-            sent_, tag_ = [], []
-
+        # else:
+    data.append((sent_, tag_))
+    sent_, tag_ = [], []
     return data
 
 
 def vocab_build(vocab_path, corpus_path, min_count):
     """
-
-    :param vocab_path:
-    :param corpus_path:
-    :param min_count:
-    :return:
+        :param vocab_path:
+        :param corpus_path:
+        :param min_count:
+        :return:
     """
     data = read_corpus(corpus_path)
     word2id = {}
@@ -86,6 +85,9 @@ def sentence2id(sent, word2id):
         if word not in word2id:
             word = '<UNK>'
         sentence_id.append(word2id[word])
+    ## ====================================================================== ##
+    # print(f'Sentence_id: \n========================\n{sentence_id}\n========================\n')
+    ## ====================================================================== ##
     return sentence_id
 
 
@@ -133,13 +135,12 @@ def pad_sequences(sequences, pad_mark=0):
 
 def batch_yield(data, batch_size, vocab, tag2label, shuffle=False):
     """
-
-    :param data:
-    :param batch_size:
-    :param vocab:
-    :param tag2label:
-    :param shuffle:
-    :return:
+        :param data:
+        :param batch_size:
+        :param vocab:
+        :param tag2label:
+        :param shuffle:
+        :return:
     """
     if shuffle:
         random.shuffle(data)
@@ -159,3 +160,7 @@ def batch_yield(data, batch_size, vocab, tag2label, shuffle=False):
     if len(seqs) != 0:
         yield seqs, labels
 
+    ## ====================================================================== ##
+    # print(f'seqs: \n========================\n{seqs}\n========================\n')
+    # print(f'labels: \n========================\n{labels}\n========================\n')
+    ## ====================================================================== ##

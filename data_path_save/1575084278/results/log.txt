@@ -1,0 +1,125 @@
+2019-11-30 11:24:38,650:INFO: Namespace(CRF=True, batch_size=64, clip=5.0, demo_model='1521112368', dropout=0.5, embedding_dim=300, epoch=10, hidden_dim=300, lr=0.001, mode='train', optimizer='Adam', pretrain_embedding='random', shuffle=True, test_data='data_path', train_data='data_path', update_embedding=True)
+2019-11-30 11:24:38,651:WARNING: From D:\NERiana\model.py:44: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2019-11-30 11:24:38,651:WARNING: From D:\NERiana\model.py:44: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2019-11-30 11:24:38,673:WARNING: From D:\NERiana\model.py:52: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2019-11-30 11:24:38,673:WARNING: From D:\NERiana\model.py:52: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2019-11-30 11:24:38,697:WARNING: From D:\NERiana\model.py:60: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+2019-11-30 11:24:38,697:WARNING: From D:\NERiana\model.py:60: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+2019-11-30 11:24:38,719:WARNING: From D:\NERiana\model.py:64: LSTMCell.__init__ (from tensorflow.python.ops.rnn_cell_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+This class is equivalent as tf.keras.layers.LSTMCell, and will be replaced by that in Tensorflow 2.0.
+2019-11-30 11:24:38,719:WARNING: From D:\NERiana\model.py:64: LSTMCell.__init__ (from tensorflow.python.ops.rnn_cell_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+This class is equivalent as tf.keras.layers.LSTMCell, and will be replaced by that in Tensorflow 2.0.
+2019-11-30 11:24:38,726:WARNING: From D:\NERiana\model.py:71: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2019-11-30 11:24:38,726:WARNING: From D:\NERiana\model.py:71: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+2019-11-30 11:24:38,729:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2019-11-30 11:24:38,729:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\rnn.py:464: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+2019-11-30 11:24:38,845:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2019-11-30 11:24:38,845:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\init_ops.py:1251: calling VarianceScaling.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2019-11-30 11:24:38,862:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\rnn_cell_impl.py:961: calling Zeros.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2019-11-30 11:24:38,862:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\rnn_cell_impl.py:961: calling Zeros.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2019-11-30 11:24:39,681:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2019-11-30 11:24:39,681:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\ops\rnn.py:244: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2019-11-30 11:24:39,865:WARNING: From D:\NERiana\model.py:76: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2019-11-30 11:24:39,865:WARNING: From D:\NERiana\model.py:76: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2019-11-30 11:24:40,135:WARNING: From D:\NERiana\model.py:106: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2019-11-30 11:24:40,135:WARNING: From D:\NERiana\model.py:106: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2019-11-30 11:24:40,145:WARNING: From D:\NERiana\model.py:117: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+2019-11-30 11:24:40,145:WARNING: From D:\NERiana\model.py:117: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+2019-11-30 11:24:41,336:WARNING: From D:\NERiana\model.py:136: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-11-30 11:24:41,336:WARNING: From D:\NERiana\model.py:136: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-11-30 11:24:41,343:WARNING: From D:\NERiana\model.py:154: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-11-30 11:24:41,343:WARNING: From D:\NERiana\model.py:154: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-11-30 11:24:41,656:WARNING: From D:\NERiana\model.py:144: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2019-11-30 11:24:41,656:WARNING: From D:\NERiana\model.py:144: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+2019-11-30 11:24:41,662:WARNING: From D:\NERiana\model.py:145: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2019-11-30 11:24:41,662:WARNING: From D:\NERiana\model.py:145: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2019-11-30 11:24:46,798:INFO: 2019-11-30 11:24:42 epoch 1, step 1, loss: 2.721e+03, global_step: 1
+2019-11-30 11:24:46,798:INFO: 2019-11-30 11:24:42 epoch 1, step 1, loss: 2.721e+03, global_step: 1
+2019-11-30 11:24:47,481:INFO: ===========validation / test===========
+2019-11-30 11:24:47,481:INFO: ===========validation / test===========
+2019-11-30 11:24:51,719:INFO: 2019-11-30 11:24:48 epoch 2, step 1, loss: 2.588e+03, global_step: 2
+2019-11-30 11:24:51,719:INFO: 2019-11-30 11:24:48 epoch 2, step 1, loss: 2.588e+03, global_step: 2
+2019-11-30 11:24:52,385:INFO: ===========validation / test===========
+2019-11-30 11:24:52,385:INFO: ===========validation / test===========
+2019-11-30 11:24:56,317:INFO: 2019-11-30 11:24:52 epoch 3, step 1, loss: 2.432e+03, global_step: 3
+2019-11-30 11:24:56,317:INFO: 2019-11-30 11:24:52 epoch 3, step 1, loss: 2.432e+03, global_step: 3
+2019-11-30 11:24:57,390:INFO: ===========validation / test===========
+2019-11-30 11:24:57,390:INFO: ===========validation / test===========
+2019-11-30 11:25:01,377:INFO: 2019-11-30 11:24:57 epoch 4, step 1, loss: 2.19e+03, global_step: 4
+2019-11-30 11:25:01,377:INFO: 2019-11-30 11:24:57 epoch 4, step 1, loss: 2.19e+03, global_step: 4
+2019-11-30 11:25:02,194:INFO: ===========validation / test===========
+2019-11-30 11:25:02,194:INFO: ===========validation / test===========
+2019-11-30 11:25:06,123:INFO: 2019-11-30 11:25:02 epoch 5, step 1, loss: 1.806e+03, global_step: 5
+2019-11-30 11:25:06,123:INFO: 2019-11-30 11:25:02 epoch 5, step 1, loss: 1.806e+03, global_step: 5
+2019-11-30 11:25:06,790:INFO: ===========validation / test===========
+2019-11-30 11:25:06,790:INFO: ===========validation / test===========
+2019-11-30 11:25:11,128:INFO: 2019-11-30 11:25:07 epoch 6, step 1, loss: 1.732e+03, global_step: 6
+2019-11-30 11:25:11,128:INFO: 2019-11-30 11:25:07 epoch 6, step 1, loss: 1.732e+03, global_step: 6
+2019-11-30 11:25:11,668:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\training\saver.py:960: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+2019-11-30 11:25:11,668:WARNING: From C:\Users\MorrisHsieh\.virtualenvs\NERiana-2NYbEYqJ\lib\site-packages\tensorflow\python\training\saver.py:960: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+2019-11-30 11:25:11,990:INFO: ===========validation / test===========
+2019-11-30 11:25:11,990:INFO: ===========validation / test===========
+2019-11-30 11:25:16,135:INFO: 2019-11-30 11:25:12 epoch 7, step 1, loss: 1.695e+03, global_step: 7
+2019-11-30 11:25:16,135:INFO: 2019-11-30 11:25:12 epoch 7, step 1, loss: 1.695e+03, global_step: 7
+2019-11-30 11:25:16,919:INFO: ===========validation / test===========
+2019-11-30 11:25:16,919:INFO: ===========validation / test===========
+2019-11-30 11:25:20,933:INFO: 2019-11-30 11:25:17 epoch 8, step 1, loss: 1.664e+03, global_step: 8
+2019-11-30 11:25:20,933:INFO: 2019-11-30 11:25:17 epoch 8, step 1, loss: 1.664e+03, global_step: 8
+2019-11-30 11:25:21,635:INFO: ===========validation / test===========
+2019-11-30 11:25:21,635:INFO: ===========validation / test===========
+2019-11-30 11:25:25,563:INFO: 2019-11-30 11:25:22 epoch 9, step 1, loss: 1.623e+03, global_step: 9
+2019-11-30 11:25:25,563:INFO: 2019-11-30 11:25:22 epoch 9, step 1, loss: 1.623e+03, global_step: 9
+2019-11-30 11:25:26,359:INFO: ===========validation / test===========
+2019-11-30 11:25:26,359:INFO: ===========validation / test===========
+2019-11-30 11:25:30,304:INFO: 2019-11-30 11:25:26 epoch 10, step 1, loss: 1.589e+03, global_step: 10
+2019-11-30 11:25:30,304:INFO: 2019-11-30 11:25:26 epoch 10, step 1, loss: 1.589e+03, global_step: 10
+2019-11-30 11:25:30,958:INFO: ===========validation / test===========
+2019-11-30 11:25:30,958:INFO: ===========validation / test===========

@@ -172,7 +172,7 @@ class BiLSTM_CRF(object):
         """
 
         :param sess:
-        :param sent: 
+        :param sent:
         :return:
         """
         label_list = []
@@ -246,16 +246,19 @@ class BiLSTM_CRF(object):
 
     def dev_one_epoch(self, sess, dev):
         """
-
-        :param sess:
-        :param dev:
-        :return:
+            :param sess:
+            :param dev:
+            :return:
         """
         label_list, seq_len_list = [], []
         for seqs, labels in batch_yield(dev, self.batch_size, self.vocab, self.tag2label, shuffle=False):
             label_list_, seq_len_list_ = self.predict_one_batch(sess, seqs)
             label_list.extend(label_list_)
             seq_len_list.extend(seq_len_list_)
+
+
+        print(f'args: \n========================\n{label_list}\n========================\n')
+        print(f'args: \n========================\n{seq_len_list}\n========================\n')
         return label_list, seq_len_list
 
     def predict_one_batch(self, sess, seqs):
@@ -299,9 +302,7 @@ class BiLSTM_CRF(object):
             tag_ = [label2tag[label__] for label__ in label_]
             sent_res = []
             if  len(label_) != len(sent):
-                print(sent)
                 print(len(label_))
-                print(tag)
             for i in range(len(sent)):
                 sent_res.append([sent[i], tag[i], tag_[i]])
             model_predict.append(sent_res)
@@ -310,4 +311,3 @@ class BiLSTM_CRF(object):
         metric_path = os.path.join(self.result_path, 'result_metric_' + epoch_num)
         for _ in conlleval(model_predict, label_path, metric_path):
             self.logger.info(_)
-

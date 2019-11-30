@@ -1,3 +1,9 @@
 */.DS_Store
 .DS_Store
 .idea/
+test.py
+converter.py
+/process
+
+word2id_cn.pkl
+train_data_cn
