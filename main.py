@@ -222,8 +222,43 @@ if __name__ == "__main__":
                             <O>: default tag (no meaning)
                             <pred>: predicted transfer tag
                     """
+
+                    ret = { "product_name": [],
+                            "time": [],
+                            "person_name": [],
+                            "org_name": [],
+                            "company_name": [],
+                            "location": [], }
+                    isWord = False
+                    tempWord = ""
+                    tempTag = ""
+
                     for sect in demo_data[0]:
                         char, _, tag = sect.split(" ")
-                        print(f"char '{char}' with tag '{tag}'")
+
+                        if tag != "O":
+                            if not isWord:
+                                tempTag = tag[2:]
+                                isWord = True
+                            tempWord += char
+
+                        if tag == "O" and isWord:
+                            ret[tempTag].append(tempWord)
+                            isWord = False
+                            tempTag = ""
+                            tempWord = ""
+
+                    for key in ret:
+                        """
+                            ret format:
+                            {
+                                "<TAG>": [<word>, ..., <word>],
+                            }
+                        """
+                        # print(f"{key} -->\n      {ret[key]}")
+                        print(f"{key} -->")
+                        for i in range(len(ret[key])):
+                            print(f"    {i}. {ret[key][i]}")
+                        # print(f"char '{char}' with tag '{tag}'")
                     # for char, tag in zip(demo_data[0][0], demo_data[0][1]):
                     #     print(f"{char} with tag '{tag}'")

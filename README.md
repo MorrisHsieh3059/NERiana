@@ -20,3 +20,7 @@
 tensorflow > 1.10
 python == 3.65
 ```
+
+V1.0:
+    V1.0.1 ==> 把NER對應到Transfer learning的結果初步顯示，以單詞(Char)為單位
+    V1.0.1 ==> 以詞彙(Vocab)為單位的顯示各名詞實體(Entity)
