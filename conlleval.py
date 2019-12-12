@@ -53,11 +53,9 @@ def parse_args(argv):
     arg('file', nargs='?', default=None)
     return parser.parse_args(argv)
 
-
 def parse_tag(t):
     m = re.match(r'^([^-]*)-(.*)$', t)
     return m.groups() if m else (t, '')
-
 
 def evaluate(iterable, options=None):
     if options is None:
@@ -141,11 +139,9 @@ def evaluate(iterable, options=None):
 
     return counts
 
-
 def uniq(iterable):
   seen = set()
   return [i for i in iterable if not (i in seen or seen.add(i))]
-
 
 def calculate_metrics(correct, guessed, total):
     tp, fp, fn = correct, guessed-correct, total-correct
@@ -153,7 +149,6 @@ def calculate_metrics(correct, guessed, total):
     r = 0 if tp + fn == 0 else 1.*tp / (tp + fn)
     f = 0 if p + r == 0 else 2 * p * r / (p + r)
     return Metrics(tp, fp, fn, p, r, f)
-
 
 def metrics(counts):
     c = counts
@@ -166,7 +161,6 @@ def metrics(counts):
             c.t_correct_chunk[t], c.t_found_guessed[t], c.t_found_correct[t]
         )
     return overall, by_type
-
 
 def report(counts, out=None):
     if out is None:
@@ -192,7 +186,6 @@ def report(counts, out=None):
         out.write('precision: %6.2f%%; ' % (100.*m.prec))
         out.write('recall: %6.2f%%; ' % (100.*m.rec))
         out.write('FB1: %6.2f  %d\n' % (100.*m.fscore, c.t_found_guessed[i]))
-
 
 def report_notprint(counts, out=None):
     if out is None:
@@ -227,7 +220,6 @@ def report_notprint(counts, out=None):
         final_report.append("".join(line))
     return final_report
 
-
 def end_of_chunk(prev_tag, tag, prev_type, type_):
     # check if a chunk ended between the previous and current word
     # arguments: previous and current chunk tags, previous and current types
@@ -251,7 +243,6 @@ def end_of_chunk(prev_tag, tag, prev_type, type_):
     if prev_tag == '[': chunk_end = True
 
     return chunk_end
-
 
 def start_of_chunk(prev_tag, tag, prev_type, type_):
     # check if a chunk started between the previous and current word
@@ -277,12 +268,10 @@ def start_of_chunk(prev_tag, tag, prev_type, type_):
 
     return chunk_start
 
-
 def return_report(input_file):
     with codecs.open(input_file, "r", "utf8") as f:
         counts = evaluate(f)
     return report_notprint(counts)
-
 
 def main(argv):
     args = parse_args(argv[1:])

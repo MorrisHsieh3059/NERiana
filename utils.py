@@ -8,13 +8,11 @@ import json
 import os
 import pickle
 
-
 UNKNOWN_CHAR = '<UNK>'
 
-
 def load_wordvec(wordvec_path, id_to_word, vec_dim, old_embeddings):
-    """Load word vectors from pre-trained file.
-    """
+    """ Load word vectors from pre-trained file. """
+
     embeddings = old_embeddings
     word_vectors = {}
     for i, line in enumerate(codecs.open(wordvec_path, 'r', 'utf-8')):
@@ -25,7 +23,6 @@ def load_wordvec(wordvec_path, id_to_word, vec_dim, old_embeddings):
         if id_to_word[i] in word_vectors:
             embeddings[i] = word_vectors[id_to_word[i]]
     return embeddings
-
 
 def load_sentence(path):
     sentences = []
@@ -47,7 +44,6 @@ def load_sentence(path):
         sentences.append(sentence)
     return sentences
 
-
 def char_mapping(sentences):
     chars = [c[0] for s in sentences for c in s]
     chars_counter = Counter(chars)
@@ -60,14 +56,12 @@ def char_mapping(sentences):
     char2id[UNKNOWN_CHAR] = vocab_len - 1
     return id2char, char2id
 
-
 def tag_mapping(tag2label):
     tag2id = tag2label
     id2tag = [0 for _ in range(len(tag2id))]
     for k in tag2id:
         id2tag[tag2id[k]] = k
     return id2tag, tag2id
-
 
 def preprocess_data(sentences, char2id, tag2id):
     data = []
@@ -77,7 +71,6 @@ def preprocess_data(sentences, char2id, tag2id):
         tags = [tag2id[w[1]] for w in s]
         data.append((string, chars, tags))
     return data
-
 
 class BatchManager(object):
     def __init__(self, data, batch_size):
@@ -111,18 +104,18 @@ class BatchManager(object):
         for idx in range(len(self.batch_data)):
             yield self.batch_data[idx]
 
-
+### Process Function ###
 def get_sentence(train_path, test_path):
     train_sentences = load_sentence(train_path)
     test_sentences = load_sentence(test_path)
-    
+
     return train_sentences, test_sentences
 
 def get_tag2label_json(json_path):
     with open(json_path, 'rb') as f:
         tag2label = json.load(f)
     f.close()
-    
+    print(tag2label)
     return tag2label
 
 def get_transform(train_sentences, map_file, tag2label_path, transfer_tag2label_path):
@@ -137,5 +130,5 @@ def get_transform(train_sentences, map_file, tag2label_path, transfer_tag2label_
     else:
         with open(map_file, "rb") as f:
             char2id, id2char, tag2id, id2tag, transfer_tag2id, transfer_id2tag = pickle.load(f)
-
+    # print(transfer_tag2id)
     return char2id, id2char, tag2id, id2tag, transfer_tag2id, transfer_id2tag

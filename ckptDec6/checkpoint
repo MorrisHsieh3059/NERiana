@@ -1,0 +1,6 @@
+model_checkpoint_path: "39ner.ckpt"
+all_model_checkpoint_paths: "35ner.ckpt"
+all_model_checkpoint_paths: "36ner.ckpt"
+all_model_checkpoint_paths: "37ner.ckpt"
+all_model_checkpoint_paths: "38ner.ckpt"
+all_model_checkpoint_paths: "39ner.ckpt"

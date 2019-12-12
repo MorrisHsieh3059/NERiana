@@ -8,7 +8,7 @@ from tensorflow.contrib.rnn import LSTMCell
 from tensorflow.contrib.crf import crf_log_likelihood, viterbi_decode
 
 class SharedModel:
-    """The Shared Network of NER models, includes embedding and RNN(LSTM/GRU)s"""
+    """ The Shared Network of NER models, includes embedding and RNN(LSTM/GRU)s """
 
     reuse = False
 
@@ -19,14 +19,12 @@ class SharedModel:
         self.vocab_size = vocab_size
         self.name = 'shared_part'
 
-
     def add_placeholders(self):
         with tf.variable_scope(self.name, reuse=SharedModel.reuse):
             self.inputs = tf.placeholder(dtype=tf.int32, shape=[None, None], name='inputs')
             self.targets = tf.placeholder(dtype=tf.int32, shape=[None, None], name='targets')
             self.dropout_pl = tf.placeholder(dtype=tf.float32, name='dropout')
             self.sequence_lengths = tf.placeholder(dtype=tf.int32, shape=[None], name='sequence_lenth')
-
 
     def embedding_layer(self):
         with tf.variable_scope("embedding", reuse=SharedModel.reuse), tf.device('/cpu:0'):
@@ -61,7 +59,7 @@ class SharedModel:
         SharedModel.reuse = True
 
 class SpecModel():
-    """The Special part of each domain ner task"""
+    """ The Special part of each domain ner task """
 
     def __init__(self, args, num_tags, vocab_size, name):
         self.args = args
@@ -76,11 +74,9 @@ class SpecModel():
         self.vocab_size = vocab_size
         self.name = name
 
-
     def shared_layer_op(self):
         self.shared_layers = SharedModel(self.args, self.vocab_size)
         self.shared_layers.build()
-
 
     def get_shared_params(self):
         self.inputs = self.shared_layers.inputs
@@ -90,7 +86,6 @@ class SpecModel():
         self.batch_size = tf.shape(self.inputs)[0]
         self.time_steps = tf.shape(self.inputs)[-1]
         self.lstm_outputs = self.shared_layers.lstm_outputs
-
 
     def project_layer(self):
         with tf.variable_scope(self.name + "proj"):
@@ -118,7 +113,6 @@ class SpecModel():
                 pred = tf.nn.xw_plus_b(hidden, w, b)
 
         self.logits = tf.reshape(pred, [-1, self.time_steps, self.num_tags])
-
 
     def crf_layer(self):
         with tf.variable_scope(self.name + 'crf'):
@@ -158,7 +152,6 @@ class SpecModel():
                 )
                 self.loss = -tf.reduce_mean(log_likelihood)
 
-
     def optimize(self):
         with tf.variable_scope(self.name + "optimizer"):
             self.global_step = tf.Variable(0, name="global_step", trainable=False)
@@ -168,7 +161,6 @@ class SpecModel():
             grads_and_vars_clip = [[g, v] if g is None else \
                             [tf.clip_by_value(g, -self.grad_clip, self.grad_clip), v] for g, v in grads_and_vars]
             self.train_op = self.optimizer.apply_gradients(grads_and_vars_clip, global_step=self.global_step)
-
 
     def build(self):
         self.shared_layer_op()
