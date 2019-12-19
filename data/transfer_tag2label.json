@@ -5,5 +5,6 @@
     "B-person_name": 5, "I-person_name": 6,
     "B-org_name": 7, "I-org_name": 8,
     "B-company_name": 9, "I-company_name": 10,
-    "B-location": 11, "I-location": 12
+    "B-location": 11, "I-location": 12,
+    "B-event": 13, "I-event": 14
 }

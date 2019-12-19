@@ -125,6 +125,7 @@ def get_transform(train_sentences, map_file, tag2label_path, transfer_tag2label_
         id2char, char2id = char_mapping(train_sentences)
         id2tag, tag2id = tag_mapping(tag2label)
         transfer_id2tag, transfer_tag2id = tag_mapping(transfer_tag2label)
+        print(f"********************************************************************************{transfer_id2tag}\n********************************************************************************{transfer_tag2id}")
         with open(map_file, "wb") as f:
             pickle.dump([char2id, id2char, tag2id, id2tag, transfer_tag2id, transfer_id2tag], f)
     else:

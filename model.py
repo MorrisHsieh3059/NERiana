@@ -227,6 +227,7 @@ class SpecModel():
         return tags
 
     def evaluate(self, sess, data_manger, id2tag):
+        print(id2tag, end = "--------------------\n")
         results = []
         trans = self.transition_params.eval()
         for batch in data_manger.iter_batch():

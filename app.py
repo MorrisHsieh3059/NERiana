@@ -33,6 +33,7 @@ parser.add_argument('--test_data', type=str, default='data/test', help='normal t
 parser.add_argument('--transfer_train_data', type=str, default='data/transfer_train', help='transfer train data')
 parser.add_argument('--transfer_test_data', type=str, default='data/transfer_test', help='transfer train data')
 parser.add_argument('--model_path', type=str, default='ckpt', help='path to save model')
+parser.add_argument('--demo_model_path', type=str, default='ckpt', help='path to call demo model')
 parser.add_argument('--map_path', type=str, default='data/maps.pkl', help='path to save maps')
 parser.add_argument('--wiki_path', type=str, default='data/wiki_100.utf8', help='wiki chinese embeddings')
 # parser.add_argument('--transfer_map_path', type=str, default='data/transfer_maps.pkl', help='path to save maps of transfer')
@@ -89,6 +90,7 @@ def train(max_epoch=args.epochs):
             embeddings = sess.run(normal_model.get_embeddings().read_value())
             embeddings = load_wordvec(args.wiki_path, id2char, args.embedding_size, embeddings)
             sess.run(normal_model.get_embeddings().assign(embeddings))
+
         print("========== Start training ==========")
         for i in range(max_epoch):
             loss = []
@@ -108,8 +110,9 @@ def train(max_epoch=args.epochs):
                 print(f"<<Test NER res>>: \n\t\t---> {line}")
             print("Epoch: {} Transfer Loss: {:>9.6f}".format(i, np.mean(transfer_loss)))
             results = transfer_model.evaluate(sess, transfer_test_manager, transfer_id2tag)
+
             for line in test_ner(results, "data/transfer_test_result"):
-                print(f"<<Test transfer res>>: \n\t\t---> {line}")
+                print(f"<<Test transfer res>>: \n\t---> {line}")
             ckpt_file = os.path.join(args.model_path, str(i) + "ner.ckpt")
             saver.save(sess, ckpt_file)
         print("========== Finish training ==========")
@@ -168,15 +171,6 @@ def load_input_sentence(sent):
         sentence.append([letter, 'O'])
     return [sentence]
 
-# for demo use only
-import pickle
-with open('./data/maps.pkl', 'rb') as fr:
-    info = pickle.load(fr)
-    char2id = info[0]
-    id2char = info[1]
-    transfer_tag2id = info[4]
-    transfer_id2tag = info[5]
-
 if __name__ == "__main__":
     if args.mode == 'train':
         train()
@@ -185,10 +179,23 @@ if __name__ == "__main__":
         single_train()
 
     elif args.mode == 'demo':
-        ckpt_file = tf.train.latest_checkpoint(model_path)
+        """ Globalize it for eternal use """
+        # for demo use only
+        import pickle
+        with open('./data/maps.pkl', 'rb') as fr:
+            info = pickle.load(fr)
+            char2id = info[0]
+            id2char = info[1]
+            transfer_tag2id = info[4]
+            transfer_id2tag = info[5]
+        """ End """
+
+
+        ### find the latest demo model
+        demo_path = os.path.join(".", args.demo_model_path) + "/"
+        ckpt_file = tf.train.latest_checkpoint(demo_path)
         print(f"----------------<file route>---------------- ==> {ckpt_file}")
 
-        paths['model_path'] = ckpt_file
         model = SpecModel(args=args,
                           num_tags=len(transfer_id2tag),
                           vocab_size=len(id2char),
@@ -231,7 +238,8 @@ if __name__ == "__main__":
                             "person_name": [],
                             "org_name": [],
                             "company_name": [],
-                            "location": [], }
+                            "location": [],
+                            "event": [], }
                     isWord = False
                     tempWord = ""
                     tempTag = ""

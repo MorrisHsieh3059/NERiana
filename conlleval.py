@@ -22,7 +22,6 @@ class FormatError(Exception):
 
 Metrics = namedtuple('Metrics', 'tp fp fn prec rec fscore')
 
-
 class EvalCounts(object):
     def __init__(self):
         self.correct_chunk = 0    # number of correctly identified chunks
@@ -35,7 +34,6 @@ class EvalCounts(object):
         self.t_correct_chunk = defaultdict(int)
         self.t_found_correct = defaultdict(int)
         self.t_found_guessed = defaultdict(int)
-
 
 def parse_args(argv):
     import argparse
@@ -71,6 +69,7 @@ def evaluate(iterable, options=None):
 
     for line in iterable:
         line = line.rstrip('\r\n')
+        # print("-----------------------------  " + line)
 
         if options.delimiter == ANY_SPACE:
             features = [f for f in line.split(" ") if f != '']
@@ -136,7 +135,15 @@ def evaluate(iterable, options=None):
     if in_correct:
         counts.correct_chunk += 1
         counts.t_correct_chunk[last_correct_type] += 1
-
+    print(f"iterab:-------------------------------------\n{iterable}")
+    print(f"counts:-------------------------------------\n{counts.correct_chunk}")
+    print(f"counts:-------------------------------------\n{counts.correct_tags}")
+    print(f"counts:-------------------------------------\n{counts.found_correct}")
+    print(f"counts:-------------------------------------\n{counts.found_guessed}")
+    print(f"counts:-------------------------------------\n{counts.token_counter}")
+    print(f"counts:-------------------------------------\n{counts.t_correct_chunk}")
+    print(f"counts:-------------------------------------\n{counts.t_found_correct}")
+    print(f"counts:-------------------------------------\n{counts.t_found_guessed}")
     return counts
 
 def uniq(iterable):
@@ -157,9 +164,11 @@ def metrics(counts):
     )
     by_type = {}
     for t in uniq(list(c.t_found_correct) + list(c.t_found_guessed)):
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ " + t)
         by_type[t] = calculate_metrics(
             c.t_correct_chunk[t], c.t_found_guessed[t], c.t_found_correct[t]
         )
+    print(f"\n\n by_type: \n{by_type} \n")
     return overall, by_type
 
 def report(counts, out=None):
