@@ -3,3 +3,6 @@ pklreader.py
 \ckptDec12
 \ckptDec19
 maps_original.pkl
+gettag.py
+genevent.py
+\gentraindata

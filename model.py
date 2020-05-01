@@ -172,6 +172,7 @@ class SpecModel():
         self.saver = tf.train.Saver(tf.global_variables(), max_to_keep=5)
 
     def _create_feed_dict(self, is_train, batch):
+        """ Update training parameters """
         _, ids, tags, lengths = batch
         feed_dict = {
             self.inputs: np.asarray(ids),
@@ -227,7 +228,6 @@ class SpecModel():
         return tags
 
     def evaluate(self, sess, data_manger, id2tag):
-        print(id2tag, end = "--------------------\n")
         results = []
         trans = self.transition_params.eval()
         for batch in data_manger.iter_batch():

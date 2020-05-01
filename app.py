@@ -33,7 +33,7 @@ parser.add_argument('--test_data', type=str, default='data/test', help='normal t
 parser.add_argument('--transfer_train_data', type=str, default='data/transfer_train', help='transfer train data')
 parser.add_argument('--transfer_test_data', type=str, default='data/transfer_test', help='transfer train data')
 parser.add_argument('--model_path', type=str, default='ckpt', help='path to save model')
-parser.add_argument('--demo_model_path', type=str, default='ckpt', help='path to call demo model')
+parser.add_argument('--demo_model_path', type=str, default='20200121', help='path to call demo model')
 parser.add_argument('--map_path', type=str, default='data/maps.pkl', help='path to save maps')
 parser.add_argument('--wiki_path', type=str, default='data/wiki_100.utf8', help='wiki chinese embeddings')
 # parser.add_argument('--transfer_map_path', type=str, default='data/transfer_maps.pkl', help='path to save maps of transfer')
@@ -207,7 +207,7 @@ if __name__ == "__main__":
             print('============= demo =============')
             saver.restore(sess, ckpt_file)
 
-            while(1):
+            while True:
                 print('Please input your sentence (or key \'exit\' to exit):')
                 demo_sent = input().strip()
                 demo_sent = demo_sent.replace(" ", "")
@@ -240,12 +240,20 @@ if __name__ == "__main__":
                             "company_name": [],
                             "location": [],
                             "event": [], }
+                    # print(f"-------------\n{demo_data[0]}\n--------------")
                     isWord = False
                     tempWord = ""
                     tempTag = ""
-
+                    lastIdx = len(demo_data[0]) - 1
+                    idx = 0
                     for sect in demo_data[0]:
                         char, _, tag = sect.split(" ")
+
+                        if (tag == "O" or "B-" in tag) and isWord:
+                            ret[tempTag].append(tempWord)
+                            isWord = False
+                            tempTag = ""
+                            tempWord = ""
 
                         if tag != "O":
                             if not isWord:
@@ -253,12 +261,10 @@ if __name__ == "__main__":
                                 isWord = True
                             tempWord += char
 
-                        if tag == "O" and isWord:
+                        if idx == lastIdx and tag != "O":
                             ret[tempTag].append(tempWord)
-                            isWord = False
-                            tempTag = ""
-                            tempWord = ""
 
+                        idx += 1
                     print("\n================================ NER / TL results ==================================")
 
                     for key in ret:
@@ -274,6 +280,6 @@ if __name__ == "__main__":
                             print(f"    {i + 1}. {ret[key][i]}")
 
                     print("\n=============================== NER/TL results END =================================")
-                        # print(f"char '{char}' with tag '{tag}'")
+                    # print(f"char '{char}' with tag '{tag}'")
                     # for char, tag in zip(demo_data[0][0], demo_data[0][1]):
                     #     print(f"{char} with tag '{tag}'")

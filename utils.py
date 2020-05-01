@@ -22,6 +22,7 @@ def load_wordvec(wordvec_path, id_to_word, vec_dim, old_embeddings):
     for i in range(len(id_to_word)):
         if id_to_word[i] in word_vectors:
             embeddings[i] = word_vectors[id_to_word[i]]
+    print(f"-############333333############--{embeddings}----------")
     return embeddings
 
 def load_sentence(path):
