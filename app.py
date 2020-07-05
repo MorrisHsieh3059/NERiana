@@ -36,9 +36,9 @@ parser.add_argument('--model_path', type=str, default='ckpt', help='path to save
 parser.add_argument('--demo_model_path', type=str, default='20200121', help='path to call demo model')
 parser.add_argument('--map_path', type=str, default='data/maps.pkl', help='path to save maps')
 parser.add_argument('--wiki_path', type=str, default='data/wiki_100.utf8', help='wiki chinese embeddings')
-# parser.add_argument('--transfer_map_path', type=str, default='data/transfer_maps.pkl', help='path to save maps of transfer')
 parser.add_argument('--tag2label_path', type=str, default='data/tag2label.json', help='config tag2label')
 parser.add_argument('--transfer_tag2label_path', type=str, default='data/transfer_tag2label.json', help='config transfer tag2label')
+# parser.add_argument('--transfer_map_path', type=str, default='data/transfer_maps.pkl', help='path to save maps of transfer')
 # parser.add_argument('--demo_model', type=str, default='1521112368', help='model for test and demo')
 args = parser.parse_args()
 
