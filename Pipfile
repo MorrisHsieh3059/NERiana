@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 tensorflow = "==1.14.0"
 opencc-python-reimplemented = "*"
+googletrans = "*"
 
 [requires]
 python_version = "3.7"

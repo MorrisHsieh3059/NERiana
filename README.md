@@ -29,6 +29,7 @@
 ```
 tensorflow > 1.14.0
 python == 3.7
+googletrans
 ```
 
 ## Usage
