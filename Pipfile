@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-tensorflow = "==1.14.0"
+tensorflow = "==2.3.1"
 opencc-python-reimplemented = "*"
 googletrans = "*"
 
